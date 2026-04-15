@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FlavorPage"/>
-        <activity android:name=".SizePage"/>
-<!--        <activity android:name=".IcingPage"/>-->
-<!--        <activity android:name=".ToppingsPage"/>-->
-<!--        <activity android:name=".SummaryPage"/>-->
+            <activity android:name=".FlavorPage"/>
+            <activity android:name=".SizePage"/>
+            <activity android:name=".IcingPage"/>
+            <activity android:name=".ToppingPage"/>
+            <activity android:name=".Summary"/>
 
 
     </application>

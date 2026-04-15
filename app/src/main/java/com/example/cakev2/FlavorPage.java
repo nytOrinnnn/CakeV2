@@ -13,7 +13,10 @@ public class FlavorPage extends MainActivity {
      TextView total;
 
      String summary = "";
+     String totalSum = "";
      int base;
+
+     int totalnum;
 
      final int choco = 100;
      final int straw = 120;
@@ -49,17 +52,22 @@ public class FlavorPage extends MainActivity {
 
         nextBtn.setOnClickListener(view -> {
             Intent intent = new Intent(FlavorPage.this, SizePage.class);
+            intent.putExtra("SUMMARY", summary);
+            intent.putExtra("TOTAL", totalSum);
+            intent.putExtra("TOTALNUM", totalnum);
+
             startActivity(intent);
         });
 
         chocolate.setOnClickListener(view -> {
 
             base = choco;
+            resetImage();
 
             chocolate.setVisibility(View.GONE);
             Cchocolate.setVisibility(View.VISIBLE);
-            Cvanilla.setVisibility(View.GONE);
-            matcha.setVisibility(View.GONE);
+            //summary += "FLAVOR: CHOCOLATE \n";
+
 
             totalUpdater();
 
@@ -69,13 +77,14 @@ public class FlavorPage extends MainActivity {
 
             base = straw;
 
+            resetImage();
+
             Cstrawberry.setVisibility(View.VISIBLE);
             strawberry.setVisibility(View.GONE);
-            matcha.setVisibility(View.GONE);
-            Cvanilla.setVisibility(View.GONE);
 
 
-            summary += "FLAVOR: CHOCOLATE";
+
+           summary = "FLAVOR: STRAWBERRY \n";
             totalUpdater();
 
         });
@@ -83,10 +92,12 @@ public class FlavorPage extends MainActivity {
         vanilla.setOnClickListener(view -> {
             base = van;
 
+            resetImage();
+
             vanilla.setVisibility(View.GONE);
-            Cchocolate.setVisibility(View.GONE);
             Cvanilla.setVisibility(View.VISIBLE);
-            matcha.setVisibility(View.GONE);
+
+            summary = "FLAVOR: VANILLA \n";
             totalUpdater();
 
 
@@ -95,10 +106,12 @@ public class FlavorPage extends MainActivity {
         matcha.setOnClickListener(view -> {
             base = matc;
 
+            resetImage();
+
             matcha.setVisibility(View.GONE);
             Cmatcha.setVisibility(View.VISIBLE);
-            Cchocolate.setVisibility(View.GONE);
-            chocolate.setVisibility(View.GONE);
+
+            summary = "FLAVOR: MATCHA \n";
             totalUpdater();
         });
 
@@ -112,8 +125,34 @@ public class FlavorPage extends MainActivity {
 
     public void totalUpdater(){
         int totalUp = base;
+        totalnum = totalUp;
 
-        total.setText("TOTAL: " + totalUp);
+       total.setText("TOTAL: " + totalUp);
+
+       totalSum = total.getText().toString();
+
+//       if (chocolate.isClickable()){
+//           summary += "FLAVOR: CHOCOLATE \n";
+//       } else if (strawberry.isClickable()) {
+//           summary += "FLAVOR: STRAWBERRY \n";
+//       } else if (vanilla.isClickable()){
+//           summary += "FLAVOR: VANILLA \n";
+//       } else if (matcha.isClickable()){
+//           summary += "FLAVOR: MATCHA \n";
+//       }
+
+    }
+
+    public void resetImage(){
+        matcha.setVisibility(View.VISIBLE);
+        chocolate.setVisibility(View.VISIBLE);
+        vanilla.setVisibility(View.VISIBLE);
+        strawberry.setVisibility(View.VISIBLE);
+
+        Cmatcha.setVisibility(View.GONE);
+        Cchocolate.setVisibility(View.GONE);
+        Cvanilla.setVisibility(View.GONE);
+        Cstrawberry.setVisibility(View.GONE);
 
     }
 }
